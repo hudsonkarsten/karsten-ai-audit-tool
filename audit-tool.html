@@ -1,0 +1,1052 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Karsten AI Agency — Business Audit Tool</title>
+    <meta
+      name="description"
+      content="Karsten AI Agency — Business Audit Tool. Get your free AI audit in 60 seconds."
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg0: #070a12;
+        --bg1: #0b1020;
+        --card: rgba(255, 255, 255, 0.06);
+        --card2: rgba(255, 255, 255, 0.08);
+        --border: rgba(255, 255, 255, 0.12);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.68);
+        --faint: rgba(255, 255, 255, 0.48);
+        --brand: #7c5cff;
+        --brand2: #2dd4bf;
+        --danger: #ff4d6d;
+        --shadow: 0 20px 70px rgba(0, 0, 0, 0.55);
+        --radius: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial,
+          "Apple Color Emoji",
+          "Segoe UI Emoji";
+        color: var(--text);
+        background:
+          radial-gradient(1200px 700px at 20% 0%, rgba(124, 92, 255, 0.22), transparent 60%),
+          radial-gradient(900px 600px at 85% 10%, rgba(45, 212, 191, 0.14), transparent 60%),
+          radial-gradient(1000px 700px at 50% 100%, rgba(124, 92, 255, 0.10), transparent 55%),
+          linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 55%, #070a12 100%);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .wrap {
+        width: min(1100px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 44px 0 72px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 16px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 999px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.28);
+        backdrop-filter: blur(10px);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+        min-width: 240px;
+      }
+
+      .brand-badge {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        background:
+          radial-gradient(12px 12px at 25% 30%, rgba(255, 255, 255, 0.65), transparent 60%),
+          linear-gradient(135deg, rgba(124, 92, 255, 1), rgba(45, 212, 191, 0.95));
+        box-shadow: 0 12px 40px rgba(124, 92, 255, 0.28);
+      }
+
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .pill {
+        font-size: 12px;
+        padding: 7px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .hero {
+        margin-top: 26px;
+        display: grid;
+        grid-template-columns: 1.12fr 0.88fr;
+        gap: 24px;
+        align-items: stretch;
+      }
+
+      @media (max-width: 980px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .brand {
+          min-width: 0;
+        }
+      }
+
+      .hero-card {
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: var(--radius);
+        padding: 26px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
+      }
+
+      h1 {
+        margin: 0 0 8px 0;
+        font-size: clamp(30px, 3.4vw, 44px);
+        line-height: 1.1;
+        letter-spacing: -0.8px;
+      }
+
+      .subhead {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.55;
+        margin: 0 0 18px;
+        max-width: 62ch;
+      }
+
+      .cta-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+
+      .btn {
+        appearance: none;
+        border: 0;
+        cursor: pointer;
+        font-weight: 650;
+        letter-spacing: 0.2px;
+        border-radius: 12px;
+        padding: 12px 14px;
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        border: 1px solid var(--border);
+        transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+
+      .btn:active {
+        transform: translateY(0);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, rgba(124, 92, 255, 1), rgba(45, 212, 191, 0.95));
+        border: 0;
+        color: #061018;
+        box-shadow: 0 18px 55px rgba(124, 92, 255, 0.22);
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, rgba(124, 92, 255, 0.95), rgba(45, 212, 191, 0.90));
+      }
+
+      .btn-danger {
+        background: rgba(255, 77, 109, 0.12);
+        border: 1px solid rgba(255, 77, 109, 0.28);
+        color: rgba(255, 255, 255, 0.92);
+      }
+
+      .btn-danger:hover {
+        background: rgba(255, 77, 109, 0.16);
+        border-color: rgba(255, 77, 109, 0.40);
+      }
+
+      .small {
+        font-size: 12px;
+        color: var(--faint);
+        line-height: 1.4;
+      }
+
+      .kpis {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .kpi {
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.03);
+        padding: 12px 12px;
+      }
+
+      .kpi .label {
+        color: var(--muted);
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+
+      .kpi .value {
+        font-weight: 700;
+        letter-spacing: -0.3px;
+      }
+
+      .form-card {
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: var(--radius);
+        padding: 18px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
+      }
+
+      form {
+        display: grid;
+        gap: 12px;
+      }
+
+      .field {
+        display: grid;
+        gap: 6px;
+      }
+
+      label {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 11px 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(8, 12, 22, 0.72);
+        color: var(--text);
+        outline: none;
+        transition: border-color 120ms ease, background 120ms ease;
+      }
+
+      textarea {
+        min-height: 86px;
+        resize: vertical;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: rgba(124, 92, 255, 0.65);
+        background: rgba(8, 12, 22, 0.88);
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      @media (max-width: 560px) {
+        .row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .divider {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.10);
+        margin: 14px 0;
+      }
+
+      .status {
+        margin-top: 24px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.03);
+        padding: 18px 18px;
+        display: none;
+      }
+
+      .status.show {
+        display: block;
+      }
+
+      .status-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .spinner {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.25);
+        border-top-color: rgba(124, 92, 255, 0.95);
+        animation: spin 900ms linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .error {
+        display: none;
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 77, 109, 0.36);
+        background: rgba(255, 77, 109, 0.10);
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .error.show {
+        display: block;
+      }
+
+      .report {
+        margin-top: 26px;
+        display: none;
+      }
+
+      .report.show {
+        display: block;
+      }
+
+      .report-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.04);
+        padding: 18px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
+      }
+
+      .report-title {
+        font-size: 16px;
+        font-weight: 750;
+        letter-spacing: -0.2px;
+        margin: 0 0 6px 0;
+      }
+
+      .report-meta {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.45;
+        margin: 0;
+      }
+
+      .report-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .grid {
+        margin-top: 14px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+
+      @media (max-width: 980px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .section {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.03);
+        padding: 16px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(10px);
+      }
+
+      .section h3 {
+        margin: 0 0 10px;
+        font-size: 14px;
+        letter-spacing: 0.2px;
+        color: rgba(255, 255, 255, 0.92);
+      }
+
+      .list {
+        margin: 0;
+        padding-left: 18px;
+        color: rgba(255, 255, 255, 0.86);
+        line-height: 1.5;
+      }
+
+      .list li {
+        margin: 6px 0;
+      }
+
+      .chips {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+
+      .chip {
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 999px;
+        padding: 7px 10px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .footer-note {
+        margin-top: 22px;
+        color: var(--faint);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <div class="brand-badge" aria-hidden="true"></div>
+          <div>Karsten AI Agency</div>
+        </div>
+        <div class="top-actions">
+          <div class="pill">Business Audit Tool</div>
+          <div class="pill">~60 seconds</div>
+          <div class="pill">AI-ready recommendations</div>
+        </div>
+      </div>
+
+      <section class="hero" aria-label="Landing">
+        <div class="hero-card">
+          <h1>Get Your Free AI Audit</h1>
+          <p class="subhead">
+            Find out exactly how AI can transform your business in 60 seconds.
+          </p>
+
+          <div class="kpis" aria-label="What you’ll receive">
+            <div class="kpi">
+              <div class="label">Problems Identified</div>
+              <div class="value">Bottlenecks & waste</div>
+            </div>
+            <div class="kpi">
+              <div class="label">AI Solutions</div>
+              <div class="value">Automations & agents</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Estimated ROI</div>
+              <div class="value">Time + cost impact</div>
+            </div>
+            <div class="kpi">
+              <div class="label">First 3 Steps</div>
+              <div class="value">Clear next actions</div>
+            </div>
+          </div>
+
+          <div class="cta-row">
+            <button class="btn btn-primary" id="jumpToFormBtn" type="button">
+              Start the 60-second audit
+            </button>
+            <button class="btn" id="loadExampleBtn" type="button">Load example</button>
+          </div>
+
+          <div class="footer-note">
+            Tip: This page calls Claude from the browser. If you hit a CORS/network error,
+            you’ll need a tiny proxy (serverless or backend) to call the API securely.
+          </div>
+        </div>
+
+        <div class="form-card" aria-label="Audit form">
+          <form id="auditForm" novalidate>
+            <div class="field">
+              <label for="businessName">Business name</label>
+              <input
+                id="businessName"
+                name="businessName"
+                type="text"
+                placeholder="e.g., Karsten Plumbing Co."
+                autocomplete="organization"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="industry">Industry / type</label>
+              <input
+                id="industry"
+                name="industry"
+                type="text"
+                placeholder="e.g., Home services, SaaS, Ecommerce"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="problem">Biggest current problem</label>
+              <textarea
+                id="problem"
+                name="problem"
+                placeholder="What’s the #1 bottleneck right now?"
+                required
+              ></textarea>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="teamSize">Team size</label>
+                <select id="teamSize" name="teamSize" required>
+                  <option value="" disabled selected>Select…</option>
+                  <option>1-5</option>
+                  <option>6-20</option>
+                  <option>21-50</option>
+                  <option>50+</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="revenueRange">Monthly revenue range</label>
+                <select id="revenueRange" name="revenueRange" required>
+                  <option value="" disabled selected>Select…</option>
+                  <option>under $10k</option>
+                  <option>$10k-$50k</option>
+                  <option>$50k-$100k</option>
+                  <option>$100k+</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="tools">Current tools you use</label>
+              <input
+                id="tools"
+                name="tools"
+                type="text"
+                placeholder="e.g., Google Workspace, HubSpot, QuickBooks, Slack…"
+                required
+              />
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="cta-row">
+              <button class="btn btn-primary" id="submitBtn" type="submit">
+                Generate my audit
+              </button>
+              <button class="btn btn-danger" id="resetBtn" type="button">
+                Reset
+              </button>
+            </div>
+
+            <div class="small">
+              Your responses stay in your browser unless you generate the report (which calls the Claude API).
+            </div>
+          </form>
+
+          <div class="status" id="statusBox" aria-live="polite">
+            <div class="status-title">
+              <div>
+                <div style="font-weight: 750">Generating your custom AI audit...</div>
+                <div class="small" style="margin-top: 4px; color: rgba(255,255,255,0.62)">
+                  This usually takes a few seconds.
+                </div>
+              </div>
+              <div class="spinner" aria-hidden="true"></div>
+            </div>
+            <div class="error" id="errorBox"></div>
+            <div class="cta-row" style="margin-top: 12px">
+              <button class="btn" id="retryBtn" type="button">Try again</button>
+              <button class="btn" id="backBtn" type="button">Back to form</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="report" id="report" aria-label="AI audit report">
+        <div class="report-head">
+          <div>
+            <div class="report-title" id="reportTitle">AI Audit Report</div>
+            <p class="report-meta" id="reportMeta"></p>
+            <div class="chips" id="reportChips"></div>
+          </div>
+          <div class="report-actions">
+            <button class="btn btn-primary" id="downloadBtn" type="button">
+              Download report
+            </button>
+            <button class="btn" id="newAuditBtn" type="button">New audit</button>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="section">
+            <h3>Problems Identified</h3>
+            <ul class="list" id="problemsList"></ul>
+          </div>
+          <div class="section">
+            <h3>Recommended AI Solutions</h3>
+            <ul class="list" id="solutionsList"></ul>
+          </div>
+          <div class="section">
+            <h3>Estimated ROI</h3>
+            <ul class="list" id="roiList"></ul>
+          </div>
+          <div class="section">
+            <h3>Your First 3 Steps</h3>
+            <ol class="list" id="stepsList" style="padding-left: 18px"></ol>
+          </div>
+        </div>
+
+        <div class="footer-note" id="disclaimer"></div>
+      </section>
+    </div>
+
+    <script>
+      // Claude calls are routed through /api/claude on Vercel (server-side),
+      // so there is no API key in this HTML.
+      const CLAUDE_PROXY_ENDPOINT = "/api/claude";
+
+      const els = {
+        jumpToFormBtn: document.getElementById("jumpToFormBtn"),
+        loadExampleBtn: document.getElementById("loadExampleBtn"),
+        auditForm: document.getElementById("auditForm"),
+        submitBtn: document.getElementById("submitBtn"),
+        resetBtn: document.getElementById("resetBtn"),
+        statusBox: document.getElementById("statusBox"),
+        errorBox: document.getElementById("errorBox"),
+        retryBtn: document.getElementById("retryBtn"),
+        backBtn: document.getElementById("backBtn"),
+        report: document.getElementById("report"),
+        reportTitle: document.getElementById("reportTitle"),
+        reportMeta: document.getElementById("reportMeta"),
+        reportChips: document.getElementById("reportChips"),
+        problemsList: document.getElementById("problemsList"),
+        solutionsList: document.getElementById("solutionsList"),
+        roiList: document.getElementById("roiList"),
+        stepsList: document.getElementById("stepsList"),
+        disclaimer: document.getElementById("disclaimer"),
+        downloadBtn: document.getElementById("downloadBtn"),
+        newAuditBtn: document.getElementById("newAuditBtn")
+      };
+
+      let lastInputs = null;
+      let lastReport = null;
+
+      function scrollToForm() {
+        els.auditForm.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function setError(msg) {
+        if (!msg) {
+          els.errorBox.textContent = "";
+          els.errorBox.classList.remove("show");
+          return;
+        }
+        els.errorBox.textContent = msg;
+        els.errorBox.classList.add("show");
+      }
+
+      function showLoading() {
+        // Form disappears and loading message appears (per requirement)
+        els.auditForm.classList.add("hidden");
+        els.statusBox.classList.add("show");
+        setError(null);
+      }
+
+      function showForm() {
+        els.statusBox.classList.remove("show");
+        els.auditForm.classList.remove("hidden");
+        setError(null);
+      }
+
+      function showReport() {
+        els.report.classList.add("show");
+        els.report.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function hideReport() {
+        els.report.classList.remove("show");
+      }
+
+      function escapeText(s) {
+        return String(s ?? "").replace(/\s+/g, " ").trim();
+      }
+
+      function getFormInputs() {
+        const fd = new FormData(els.auditForm);
+        const inputs = {
+          businessName: escapeText(fd.get("businessName")),
+          industry: escapeText(fd.get("industry")),
+          problem: String(fd.get("problem") ?? "").trim(),
+          teamSize: escapeText(fd.get("teamSize")),
+          revenueRange: escapeText(fd.get("revenueRange")),
+          tools: escapeText(fd.get("tools"))
+        };
+
+        const missing = Object.entries(inputs)
+          .filter(([k, v]) => !v)
+          .map(([k]) => k);
+
+        if (missing.length) {
+          const pretty = {
+            businessName: "Business name",
+            industry: "Industry / type",
+            problem: "Biggest current problem",
+            teamSize: "Team size",
+            revenueRange: "Monthly revenue range",
+            tools: "Current tools"
+          };
+          throw new Error("Please complete: " + missing.map((m) => pretty[m] || m).join(", "));
+        }
+
+        return inputs;
+      }
+
+      function listToUL(listEl, items) {
+        listEl.textContent = "";
+        if (!Array.isArray(items) || items.length === 0) {
+          const li = document.createElement("li");
+          li.textContent = "—";
+          listEl.appendChild(li);
+          return;
+        }
+        for (const item of items) {
+          const li = document.createElement("li");
+          li.textContent = typeof item === "string" ? item : JSON.stringify(item);
+          listEl.appendChild(li);
+        }
+      }
+
+      function listToOL(listEl, items) {
+        listEl.textContent = "";
+        if (!Array.isArray(items) || items.length === 0) {
+          const li = document.createElement("li");
+          li.textContent = "—";
+          listEl.appendChild(li);
+          return;
+        }
+        for (const item of items) {
+          const li = document.createElement("li");
+          li.textContent = typeof item === "string" ? item : JSON.stringify(item);
+          listEl.appendChild(li);
+        }
+      }
+
+      function renderChips(inputs) {
+        els.reportChips.textContent = "";
+        const chips = [
+          `Industry: ${inputs.industry}`,
+          `Team: ${inputs.teamSize}`,
+          `Revenue: ${inputs.revenueRange}`
+        ];
+        for (const c of chips) {
+          const div = document.createElement("div");
+          div.className = "chip";
+          div.textContent = c;
+          els.reportChips.appendChild(div);
+        }
+      }
+
+      function renderReport(inputs, report) {
+        lastInputs = inputs;
+        lastReport = report;
+
+        const titleName = inputs.businessName ? ` — ${inputs.businessName}` : "";
+        els.reportTitle.textContent = `AI Audit Report${titleName}`;
+        els.reportMeta.textContent =
+          `Biggest problem: ${escapeText(inputs.problem)} • Tools: ${escapeText(inputs.tools)}`;
+        renderChips(inputs);
+
+        listToUL(els.problemsList, report.problems_identified);
+        listToUL(els.solutionsList, report.recommended_ai_solutions);
+        listToUL(els.roiList, report.estimated_roi);
+        listToOL(els.stepsList, report.first_3_steps);
+
+        els.disclaimer.textContent =
+          report.disclaimer ||
+          "Note: This audit is generated from your inputs and may include assumptions. Validate numbers before making decisions.";
+
+        showReport();
+      }
+
+      async function callClaude(inputs) {
+        const res = await fetch(CLAUDE_PROXY_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json"
+          },
+          body: JSON.stringify(inputs)
+        });
+
+        if (!res.ok) {
+          let extra = "";
+          try {
+            const j = await res.json();
+            extra = j?.error ? ` (${j.error})` : "";
+          } catch {
+            // ignore
+          }
+          throw new Error(`Audit API error: ${res.status} ${res.statusText}${extra}`);
+        }
+
+        try {
+          const parsed = await res.json();
+          return {
+            problems_identified: Array.isArray(parsed.problems_identified) ? parsed.problems_identified : [],
+            recommended_ai_solutions: Array.isArray(parsed.recommended_ai_solutions)
+              ? parsed.recommended_ai_solutions
+              : [],
+            estimated_roi: Array.isArray(parsed.estimated_roi) ? parsed.estimated_roi : [],
+            first_3_steps: Array.isArray(parsed.first_3_steps) ? parsed.first_3_steps.slice(0, 3) : [],
+            disclaimer: typeof parsed.disclaimer === "string" ? parsed.disclaimer : ""
+          };
+        } catch (e) {
+          throw new Error("Could not parse audit response as JSON. Try again.");
+        }
+      }
+
+      function makeDownloadHtml(inputs, report) {
+        const safe = (s) =>
+          String(s ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+
+        const li = (arr) =>
+          (Array.isArray(arr) ? arr : [])
+            .map((x) => `<li>${safe(x)}</li>`)
+            .join("");
+
+        const now = new Date();
+        const meta = `Generated ${now.toLocaleString()} • ${safe(inputs.businessName)} • ${safe(inputs.industry)}`;
+
+        return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Audit Report — ${safe(inputs.businessName)}</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg0: #070a12;
+        --bg1: #0b1020;
+        --card: rgba(255,255,255,0.06);
+        --border: rgba(255,255,255,0.14);
+        --text: rgba(255,255,255,0.92);
+        --muted: rgba(255,255,255,0.68);
+        --brand: #7c5cff;
+        --brand2: #2dd4bf;
+      }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+        color: var(--text);
+        background:
+          radial-gradient(1200px 700px at 20% 0%, rgba(124, 92, 255, 0.22), transparent 60%),
+          radial-gradient(900px 600px at 85% 10%, rgba(45, 212, 191, 0.14), transparent 60%),
+          linear-gradient(180deg, var(--bg0), var(--bg1));
+      }
+      .wrap{width:min(920px, calc(100% - 40px)); margin:0 auto; padding:44px 0 60px;}
+      .head{
+        border:1px solid var(--border);
+        background:rgba(255,255,255,0.04);
+        border-radius:18px;
+        padding:18px 18px;
+      }
+      h1{margin:0 0 6px; font-size:28px; letter-spacing:-0.6px;}
+      .meta{color:var(--muted); font-size:13px; line-height:1.5;}
+      .grid{margin-top:14px; display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+      @media (max-width: 860px){ .grid{grid-template-columns:1fr;} }
+      .card{
+        border:1px solid var(--border);
+        background:rgba(255,255,255,0.03);
+        border-radius:18px;
+        padding:16px;
+      }
+      .card h2{margin:0 0 10px; font-size:14px; letter-spacing:0.2px;}
+      ul,ol{margin:0; padding-left:18px; line-height:1.55;}
+      li{margin:6px 0;}
+      .badge{
+        display:inline-block; margin-top:10px;
+        padding:7px 10px; border-radius:999px; font-size:12px;
+        border:1px solid var(--border); color:var(--muted); background:rgba(255,255,255,0.03);
+      }
+      .sig{margin-top:18px; color:var(--muted); font-size:12px; line-height:1.5;}
+      .accent{background:linear-gradient(135deg, var(--brand), var(--brand2)); -webkit-background-clip:text; background-clip:text; color:transparent; font-weight:800;}
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="head">
+        <h1><span class="accent">Karsten AI Agency</span> — AI Audit Report</h1>
+        <div class="meta">${safe(meta)}</div>
+        <div class="badge">Biggest problem: ${safe(inputs.problem)}</div>
+        <div class="badge">Tools: ${safe(inputs.tools)}</div>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h2>Problems Identified</h2>
+          <ul>${li(report.problems_identified)}</ul>
+        </div>
+        <div class="card">
+          <h2>Recommended AI Solutions</h2>
+          <ul>${li(report.recommended_ai_solutions)}</ul>
+        </div>
+        <div class="card">
+          <h2>Estimated ROI</h2>
+          <ul>${li(report.estimated_roi)}</ul>
+        </div>
+        <div class="card">
+          <h2>Your First 3 Steps</h2>
+          <ol>${li(report.first_3_steps)}</ol>
+        </div>
+      </div>
+      <div class="sig">${safe(report.disclaimer || "Note: Validate assumptions and numbers before implementation.")}</div>
+    </div>
+  </body>
+</html>`;
+      }
+
+      function downloadReport() {
+        if (!lastInputs || !lastReport) return;
+        const html = makeDownloadHtml(lastInputs, lastReport);
+        const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        const safeName = (lastInputs.businessName || "business")
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/(^-|-$)/g, "");
+        a.href = url;
+        a.download = `ai-audit-${safeName || "report"}.html`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }
+
+      async function generate() {
+        try {
+          hideReport();
+          const inputs = getFormInputs();
+          showLoading();
+          const report = await callClaude(inputs);
+          els.statusBox.classList.remove("show");
+          renderReport(inputs, report);
+        } catch (e) {
+          const msg = String(e?.message || e || "Unknown error");
+          // If fetch fails due to CORS, browsers often throw TypeError: Failed to fetch.
+          const hint =
+            msg.toLowerCase().includes("failed to fetch") || msg.toLowerCase().includes("cors")
+              ? " (If this is a browser CORS error, you’ll need a proxy/server call.)"
+              : "";
+          setError(msg + hint);
+          els.statusBox.classList.add("show");
+        }
+      }
+
+      function resetAll() {
+        els.auditForm.reset();
+        showForm();
+        hideReport();
+        lastInputs = null;
+        lastReport = null;
+      }
+
+      els.jumpToFormBtn.addEventListener("click", scrollToForm);
+      els.loadExampleBtn.addEventListener("click", () => {
+        document.getElementById("businessName").value = "Northstar Home Services";
+        document.getElementById("industry").value = "Home services (HVAC + plumbing)";
+        document.getElementById("problem").value =
+          "We’re losing leads after-hours, scheduling is chaotic, and our admin team is overwhelmed with calls, estimates, and follow-ups.";
+        document.getElementById("teamSize").value = "6-20";
+        document.getElementById("revenueRange").value = "$50k-$100k";
+        document.getElementById("tools").value = "Google Workspace, QuickBooks, Jobber, Slack, Zapier";
+        scrollToForm();
+      });
+
+      els.resetBtn.addEventListener("click", resetAll);
+      els.retryBtn.addEventListener("click", generate);
+      els.backBtn.addEventListener("click", showForm);
+      els.downloadBtn.addEventListener("click", downloadReport);
+      els.newAuditBtn.addEventListener("click", () => {
+        showForm();
+        hideReport();
+        scrollToForm();
+      });
+
+      els.auditForm.addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        generate();
+      });
+    </script>
+  </body>
+</html>
+

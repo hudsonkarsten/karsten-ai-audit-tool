@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/audit-tool.html" },
+    { "source": "/audit", "destination": "/audit-tool.html" }
+  ]
+}
+
